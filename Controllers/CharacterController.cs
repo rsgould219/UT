@@ -423,19 +423,6 @@ public class CharacterController : MonoBehaviour{
             if(ch.getGO().activeSelf != true){
                 ch.getGO().SetActive(true);
             }
-        /*if(ch.getType() == Character.CharType.Prof) {
-            foreach (Character c in profList) {
-                if (c.getId() == ch.getId())
-                    removeBuffP.Add(ch.getId());
-            }
-        }
-        else if(ch.getType() == Character.CharType.Student) {
-            foreach (Character c in studList){
-                if (c.getId() == ch.getId())
-                    removeBuffS.Add(i);
-                    break;
-            }
-        }*/
         charactersActive.Add(ch);
         ch.active = true;
     }
@@ -448,16 +435,7 @@ public class CharacterController : MonoBehaviour{
             i = 0;
             foreach(Character ca in charactersActive){
                 if(ch.getId() == ca.getId()){
-                    /*if (ch.getType() == Character.CharType.Prof){
-                        profList.Add(ch);
-                        p++;
-                    }
-                    else if (ch.getType() == Character.CharType.Student){
-                        studList.Add(ch);
-                        s++;
-                    }
-                    else if (ch.getType() == Character.CharType.Grad){
-                        gradList.Add(ch);
+                    dList.Add(ch);
                     }*/
                     ch.setNextDest();
                     charactersActive.RemoveAt(i);
@@ -485,24 +463,7 @@ public class CharacterController : MonoBehaviour{
         foreach(Character c in profList) {
             c.goToNextDest();
         }
-        /*for(int i = 0; i < charactersActive.Count; i++){
-            if(charactersActive[i].getType() == Character.CharType.Prof && removeBuffP.Contains(charactersActive[i].getId())){
-                profList.Add(charactersActive[i]);
-                removeBuffP.Remove(charactersActive[i].getId());
-                charactersActive.RemoveAt(i);
-                Debug.Log("Prof Removed from active");
-            }
-            else if(charactersActive[i].getType() == Character.CharType.Student && removeBuffS.Contains(charactersActive[i].getId())){
-                studList.Add(charactersActive[i]);
-                removeBuffS.Remove(charactersActive[i].getId());
-                charactersActive.RemoveAt(i);
-                Debug.Log("Student Removed from active");
-            }
-        }
-        if(removeBuffP.Count != 0 && removeBuffS.Count != 0)
-            Debug.Log("Students were not removed");
-        removeBuffS.Clear();
-        removeBuffP.Clear();*/
+        
     }
     public void activeCheckOdd(List<Character> oddList){
         Debug.Log("Checking " + oddList.Count + " odd characters");
@@ -663,23 +624,6 @@ public class CharacterController : MonoBehaviour{
            c.makeTimeList();
         foreach(Character c in gradList)
            c.makeTimeList();
-        //foreach(Character c in charactersActive)
-           //c.makeTimeList();
-        /*foreach(Character c in profList){
-            //clear
-        }
-        foreach(Course c in AcedemicController.Instance.courses){
-            if(ScheduleController.Instance.semFall){
-                foreach(Section s in c.sections){
-                    s.getProf().addToTimeList(s);
-                }
-            }
-            else{
-                foreach(Section s in c.sectionsS){
-                    s.getProf().addToTimeList(s);
-                }
-            }
-        }*/
         foreach(Character c in profList)
             c.makeTimeList();
         foreach(Character c in profList)
