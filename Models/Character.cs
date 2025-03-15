@@ -437,11 +437,6 @@ public class Character: IXmlSerializable{
             else{
                 //set path to next destination
                 Debug.Log("Setting New Path at " + timeList[0].Item2 + "from " + currTile.getX() + " " + currTile.getY());
-                //if destinatioon is in another building, go offscreen
-
-                //if(buildingId != timeList[0].Item3.zone.building.id)
-                    //setPath(new Path(BuildingController.Instance.building, currTile, BuildingController.Instance.building.getTileAt(0, 0)));
-                //else if for normal pathing after check if the seat is the same
                 
                 //normal option for next class
                     if(timeList[0].Item3.zone.getId() != timeList[timeList.Count - 1].Item3.zone.getId() /*&& (currTile.getX() != 0 && currTile.getY() != 0)*/){
@@ -481,8 +476,6 @@ public class Character: IXmlSerializable{
                         if(timeList[timeList.Count - 1].Item3.getLength() + timeList[timeList.Count - 2].Item3.getLength() / 2 == 5)
                             oddOccupiedTime = true;
                         }
-                    //else if(timeList[0].Item3.zone.getId() == timeList[timeList.Count - 1].Item3.zone.getId() && WorldController.Instance.time2 == timeList[0].Item2)
-                        //return;
                 //If the character should go off screen due to no clas for a while
                     else{
                         setPath(new Path_AStar(BuildingController.Instance.building, currTile, BuildingController.Instance.building.getTileAt(0, 0)));
@@ -491,35 +484,10 @@ public class Character: IXmlSerializable{
                         if(timeList[timeList.Count - 1].Item3.getLength() == 3){
                              oddOccupiedTime = true;
                         }
-                        /*Section s = AcedemicController.Instance.courses[timeList[0].Item3.courseId].sections[timeList[0].Item3.sectionId];
-                        int tempTime = 0;
-                        foreach(TimeSlot ts in s.slotList){
-                            if(timeList[0].Item1 != ts.getDay()){
-                                tempTime = 7 + (timeList[timeList.Count - 1].Item2 / 2) + timeList[timeList.Count - 1].Item2 % 2;
-                                tempTime += ts.getLength() / 2;
-                            }
-                        }
-                        if(tempTime != 0){
-                            occupiedTill = tempTime;
-                        }
-                        else    
-                            Debug.Log("ERROR: no time for moving chaarcter to 0 0");*/
+                        
                         Debug.Log("Setting New Path at " + timeList[0].Item2 + "from " + currTile.getX() + " " + currTile.getY() + " to spawn");
                     }
-                /*else if(type == CharType.Grad){
-                    Tile nextSeat;
-                    if (id == AcedemicController.Instance.courses[timeList[0].Item3.courseId].sectionsS[timeList[0].Item3.sectionId].getProf().getId())
-                        nextSeat = timeList[0].Item3.zone.getDesk();
-                    else
-                        nextSeat = timeList[0].Item3.zone.getNextSeat();
-
-                    setPath(new Path(BuildingController.Instance.building, currTile, nextSeat));
-                }*/
-            
-                //set when the character will be occupied till and update list of class times
-                //occupiedTill = 7 + (timeList[0].Item2 / 2) + timeList[0].Item2 % 2;
-                //timeList.Add(new Tuple<int, int, SectionLite>(timeList[0].Item1, timeList[0].Item2, timeList[0].Item3));
-                //timeList.RemoveAt(0);
+                
             }
         }
     }
